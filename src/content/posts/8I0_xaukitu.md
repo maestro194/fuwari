@@ -73,3 +73,63 @@ void solve(){
         cout << res.substr(cnt);
 }
 ```
+
+## Chọn màu - MARBLES
+
+## csphn_2d_beauty_str - Simple Math
+
+Thay vì kiểm tra độ đẹp của từng đoạn xâu, ta có thể đổi thứ tự tính tổng: 
+
+> Với mỗi nguyên âm ```a[i]```, ta tính lượng đóng góp của nó vào các xâu con chứa nó
+
+$$
+\sum{l<=i<=r} 1/(r - l + 1)
+$$
+
+Gọi ```A = i - 1``` và ```B = n - i``` lần lượt là số ký tự bên trái và bên phải của nguyên âm ```i```. Khi chọn xâu con chứa vị trí ```i```,  ta chọn ```a``` kí tự bên trái ```(0 <= a <= A)```, và ```b``` kí tự bên phải ```(0 <= b <= B)```. Độ dài xâu con là ```a+b+1```. Đóng góp của ```a[i]``` là:
+
+$$
+a=0∑A​b=0∑B​a+b+11​.
+$$
+
+Xét theo ```b```, ta có 
+
+$$
+\sum{a=0}^{A} ​(H_{a+B+1}​−H_a​),
+$$
+
+trong đó $$H_k = \sum(t=1)^k \frac{1}{t}$$
+
+Đặt ```preH[k]``` là prefix sum từ 1 đến ```k``` của mảng H
+
+Ta có công thức
+```
+vow[i] = preH[n] - preH[B] - preH[A],
+```
+
+với ```A = i - 1```, ```B = n - i```
+
+Đáp số là tổng kết quả của các nguyên âm
+
+### Code
+```cpp
+string s;
+if(!(cin>>s)) return 0;
+int n = s.size();
+vector<long double> H(n+1);
+H[0]=0.0L;
+for(int i=1;i<=n;i++) H[i]=H[i-1]+1.0L/i;
+vector<long double> SH(n+1);
+SH[0]=H[0];
+for(int i=1;i<=n;i++) SH[i]=SH[i-1]+H[i];
+unordered_set<char> vowels = {'U','E','A','I','O','Y'};
+long double ans = 0.0L;
+for(int i=1;i<=n;i++){
+    if(vowels.count(s[i-1])){
+        int A = i-1;
+        int B = n-i;
+        ans += SH[n] - SH[B] - SH[A];
+    }
+}
+cout.setf(std::ios::fixed); cout<<setprecision(10)<<(double)ans<<"\n";
+```
