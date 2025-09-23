@@ -1,8 +1,8 @@
 ---
-title: hungstones
+title: PreHNOI1
 published: 2025-09-19
 tags: [Editorial, HNOI]
-category: Editorial
+category: THPT
 draft: false
 ---
 
@@ -80,9 +80,9 @@ Kết quả cuối cùng của bài toán sẽ là ```min_cost / 2```.
 
 ```markdown
 ---
-title: hungstones
+title: PreHNOI1
 published: 2025-09-19
 tags: [Editorial, HNOI]
-category: Editorial
+category: THPT
 draft: false
 ---
