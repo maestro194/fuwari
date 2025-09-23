@@ -76,6 +76,97 @@ void solve(){
 
 ## Chọn màu - MARBLES
 
+Bài toán này là biến thể của bài toán USACO "beads":
+Có chuỗi vòng độ dài ```n```, mỗi ký tự ```∈ {b, r, w}```.
+Cắt tại một vị trí bất kỳ, “mở” vòng thành chuỗi thẳng.
+
+Sau đó chọn hạt từ hai đầu dãy. Quy tắc chọn:
+
+- Mỗi đầu phải chọn toàn bộ hạt liên tiếp cùng màu, nhưng có thể coi "w" (trắng) là wildcard: nó phù hợp với cả xanh (b) hoặc đỏ (r).
+- Quan trọng: không được chọn cả b và r trong cùng một đầu.
+
+Mục tiêu: chọn được nhiều hạt nhất.
+
+#### Ta có thể đưa ra các nhận xét cho bài toán như sau
+
+- Vì chuỗi vòng, nên ta có thể thử tất cả vị trí cắt. Sau khi cắt, ta có chuỗi thẳng độ dài n. Với một điểm cắt, ta tính:
+    - left segment (từ trái sang phải)
+    - right segment (từ phải sang trái)
+
+Mỗi segment tính số hạt tối đa thu được theo luật.
+
+Đáp số cho điểm cắt: ```left + right (<= n)```
+
+#### Cách giải:
+- Nhân đôi chuỗi: ```s = s + s```
+
+- Với mỗi vị trí cắt trong ```[0..n-1]```, xét đoạn ```[i..i+n-1]``` trong chuỗi nhân đôi.
+
+- Dùng kỹ thuật tiền xử lý độ dài run:
+    - Tính ```left[i]```: số hạt chọn được từ i sang trái.
+    - Tính ```right[i]```: số hạt chọn được từ i sang phải.
+
+Với mỗi cắt tại ```i```, kết quả = ```left[i] + right[i] ≤ n```.
+
+Độ phức tạp: ```O(n)```
+
+### Code
+```cpp
+    string s;
+    cin >> s;
+    int n = s.size();
+    string s2 = s + s;
+    vector<int> left(2*n), right(2*n);
+
+    // left[i]: kiểm tra bên trái i
+    for (int i = 0; i < 2*n; i++) {
+        int j = i, cnt = 0;
+        char color = 0;
+        while (j >= 0) {
+            char c = s2[j];
+            if (c == 'w') {
+                cnt++;
+            } else {
+                if (color == 0) {
+                    color = c;
+                    cnt++;
+                } else if (c == color) {
+                    cnt++;
+                } else break;
+            }
+            j--;
+        }
+        left[i] = cnt;
+    }
+
+    // right[i]: kiểm tra bên phải i
+    for (int i = 0; i < 2*n; i++) {
+        int j = i, cnt = 0;
+        char color = 0;
+        while (j < 2*n) {
+            char c = s2[j];
+            if (c == 'w') {
+                cnt++;
+            } else {
+                if (color == 0) {
+                    color = c;
+                    cnt++;
+                } else if (c == color) {
+                    cnt++;
+                } else break;
+            }
+            j++;
+        }
+        right[i] = cnt;
+    }
+
+    int ans = 0;
+    for (int i = n; i < 2*n; i++) {
+        ans = max(ans, left[i-1] + right[i]);
+    }
+    cout << min(ans, n) << "\n";
+```
+
 ## csphn_2d_beauty_str - Simple Math
 
 Thay vì kiểm tra độ đẹp của từng đoạn xâu, ta có thể đổi thứ tự tính tổng: 
