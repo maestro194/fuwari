@@ -1,6 +1,7 @@
 ---
 title: Code đẹp và kỹ thuật
 published: 2025-09-24
+description: Hướng dẫn giải bài tập 8I0 ngày 24-09-2025
 tags: [Editorial]
 category: 8I0
 draft: false
@@ -43,6 +44,7 @@ ll ans(int a, int b, int k) {
 ---
 title: Code đẹp và kỹ thuật
 published: 2025-09-24
+description: Hướng dẫn giải bài tập 8I0 ngày 24-09-2025
 tags: [Editorial]
 category: 8I0
 draft: false

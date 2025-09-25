@@ -1,6 +1,7 @@
 ---
 title: PreHNOI1
 published: 2025-09-19
+description: Hướng dẫn giải PreHNOI1
 tags: [Editorial, HNOI]
 category: THPT
 draft: false
