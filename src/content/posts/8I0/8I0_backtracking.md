@@ -46,6 +46,47 @@ void solve() {
 ```
 
 # **Bài 2: Phân tích số**
+
+Ý tưởng xử lý của bài này giống như bài 1, nhưng thay vì ta có 2 lựa chọn là 1 hoặc 2, giờ ta cần xây dựng 1 dãy không giảm có tổng bằng ```N```
+
+Ta có thể thực hiện duyệt như sau
+
+```
+- Với số thứ i, ta lần lượt gán cho số thứ i giá trị từ max(ans[i - 1], 1)
+- Sau khi thêm số thứ i, ta kiểm tra xem tổng các số hiện tại đã vượt quá n chưa, nếu bằng n -> 1 kết quả, nếu quá n thì quay lại
+```
+
+### Mã nguồn
+```cpp
+void backtrack(int sum, vector<int> v) {
+    if(sum == n) { // tìm được 1 đáp án
+        cout << n << "=";
+        for(int i = 0; i < v.size(); i ++) {
+            cout << v[i];
+            if(i != v.size() - 1)
+                cout << "+";
+        }
+        cout << endl;
+        return;
+    } else if (sum > n) {
+        return;
+    }
+    int start = 1;
+    if(v.size()) start = max(start, v.size() - 1);
+    // tối đa là đến n - sum
+    for(int num = start; num <= n - sum; num ++) {
+        v.push_back(num);
+        backtrack(sum + num, v);
+        v.pop_back();
+    }
+}
+void solve() {
+    cin >> n;
+    vector<int> v(0);
+    backtrack(0, v);
+}
+```
+
 # **Bài 3: Sinh tổ hợp**
 # **Bài 4: Tổ hợp nguyên tố**
 # **Bài 5: Nuôi bò**
