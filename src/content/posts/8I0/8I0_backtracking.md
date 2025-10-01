@@ -60,7 +60,7 @@ Ta có thể thực hiện duyệt như sau
 ```cpp
 void backtrack(int sum, vector<int> v) {
     if(sum == n) { // tìm được 1 đáp án
-        cout << n << "=";
+        cout << n << " = ";
         for(int i = 0; i < v.size(); i ++) {
             cout << v[i];
             if(i != v.size() - 1)
@@ -72,7 +72,7 @@ void backtrack(int sum, vector<int> v) {
         return;
     }
     int start = 1;
-    if(v.size()) start = max(start, v.size() - 1);
+    if(v.size()) start = max(start, v[v.size() - 1]);
     // tối đa là đến n - sum
     for(int num = start; num <= n - sum; num ++) {
         v.push_back(num);
