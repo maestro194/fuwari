@@ -88,6 +88,15 @@ void solve() {
 ```
 
 # **Bài 3: Sinh tổ hợp**
+
+Yêu cầu của bài toán chỉ cho phép ta chọn ```k``` trong ```n``` phần tử được đưa ra.
+
+Các số tự nhiên vẫn được chọn theo 2 cách giống như bài 1: được chọn hoặc không được chọn.
+
+Ta có thể thực hiện quay lui như sau:
+
+
+
 # **Bài 4: Tổ hợp nguyên tố**
 # **Bài 5: Nuôi bò**
 
