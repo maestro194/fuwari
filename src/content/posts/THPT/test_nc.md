@@ -7,6 +7,40 @@ category: THPT
 draft: false
 ---
 
+# **A - Tổng liên tiếp không quá t**
+
+# **B - Kiểm tra chuỗi ngoặc**
+
+# **C - Truy vấn trên mảng**
+
+# **D - Lũy thừa**
+
+# **E - Thả xốp**
+
+# **F - Lì xi**
+
+# **G - Dãy con tăng dài nhất - dễ**
+
+# **H - Xếp chồng gạch**
+
+# **I - Truy vấn nguyên tố**
+
+# **J - Tìm vị trí**
+
+# **K - Bò**
+
+# **L - Kỳ nghỉ**
+
+# **M - Tích chính phương**
+
+# **N - Đếm dãy chia hết**
+
+# **O - Phát đồng xu**
+
+# **P - Điểm xanh đỏ**
+
+# **Q - Đếm đoạn con có tổng bằng độ dài**
+
 # **R - Chia kẹo**
 
 ### Subtask 1 (20%): $N, Q \le 10^3$
