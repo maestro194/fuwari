@@ -9,35 +9,35 @@ draft: false
 
 # **R - Chia kẹo**
 
-### Subtask 1 (20%): ~N, Q \le 10^3~
+### Subtask 1 (20%): $N, Q \le 10^3$
 
-Với mỗi truy vấn, ta duyệt ~i~ từ ~l~ đến ~r~ và thêm ~x~ vào số kẹo của học sinh ~i~ (gọi là ~b[i]~) nếu ~a[i]~ chia hết cho ~x~.
+Với mỗi truy vấn, ta duyệt $i$ từ $l$ đến $r$ và thêm $x$ vào số kẹo của học sinh $i$ (gọi là `b[i]`) nếu `a[i]` chia hết cho $x$.
 
-Độ phức tạp: ~O(N * Q)~
+Độ phức tạp: $O(N * Q)$
 
-### Subtask 2 (20%): ~x = 1~
+### Subtask 2 (20%): $x = 1$
 
-Lúc này tất cả học sinh có số thứ tự từ ~l~ đến ~r~ đều nhận được kẹo, do đó ta sử dụng mảng hiệu và cập nhật `b[l] += v, b[r + 1] -= v` trong mỗi bước sau đó cộng dồn lại để được kết quả.
+Lúc này tất cả học sinh có số thứ tự từ $l$ đến $r$ đều nhận được kẹo, do đó ta sử dụng mảng hiệu và cập nhật `b[l] += v, b[r + 1] -= v` trong mỗi bước sau đó cộng dồn lại để được kết quả.
 
-Độ phức tạp: ~O(N + Q)~
+Độ phức tạp: $O(N + Q)$
 
-### Subtask 3 (20%): ~x \le 2~
+### Subtask 3 (20%): $x \le 2$
 
-Với ~x = 1~, ta xử lý như Subtask 2
+Với $x = 1$, ta xử lý như Subtask 2
 
-Với ~x = 2~, ta lưu thêm một mảng ~c~ là số kẹo của các học sinh có số thứ tự chẵn và cập nhật `c[l] += v, c[r + 1] -= v` tương tự như trên. Sau đó ta cộng dồn mảng ~c~ và thêm ~c[i]~ vào ~b[i]~ nếu ~i~ chẵn.
+Với $x = 2$, ta lưu thêm một mảng `c` là số kẹo của các học sinh có số thứ tự chẵn và cập nhật `c[l] += v, c[r + 1] -= v` tương tự như trên. Sau đó ta cộng dồn mảng `c` và thêm `c[i]` vào `b[i]` nếu $i$ chẵn.
 
-Độ phức tạp: ~O(N + Q)~
+Độ phức tạp: $O(N + Q)$
 
-### Subtask 4 (20%): ~l = 1, r = N~
+### Subtask 4 (20%): $l = 1, r = N$
 
-Vì ~l = 1, r = N~ nên trong mỗi truy vấn, tất cả các học sinh có ~a_i~ chia hết cho ~x~ đều sẽ nhận được ~v~ cái kẹo.
+Vì $l = 1, r = N$ nên trong mỗi truy vấn, tất cả các học sinh có $a_i$ chia hết cho $x$ đều sẽ nhận được $v$ cái kẹo.
 
-Gọi ~f[i]~ là tổng số kẹo của các truy vấn có ~x = i~, để tìm ~f~ ta chỉ cần duyệt các truy vấn và cập nhật `f[x] += v`
+Gọi `f[i]` là tổng số kẹo của các truy vấn có $x = i$, để tìm $f$ ta chỉ cần duyệt các truy vấn và cập nhật `f[x] += v`
 
-Để tìm số kẹo của mỗi học sinh, với học sinh ~i~ ta duyệt các ước ~j~ của ~a_i~ và thêm ~f[j]~ vào kết quả. Nhưng cần chú ý ~N \le 2 * 10^5, a_i \le 5 * 10^5~ nên nếu ta duyệt từ ~1~ đến ~\sqrt{a_i}~ thì sẽ không chạy kịp trong thời gian cho phép. Thay vào đó, ta xây dựng sẵn dãy ước của các số từ ~1~ đến ~5 * 10^5~ bằng các duyệt ~i~ từ ~1~ đến ~5 * 10^5~ sau đó thêm ~i~ vào dãy ước của các bội của ~i~.
+Để tìm số kẹo của mỗi học sinh, với học sinh $i$ ta duyệt các ước $j$ của $a_i$ và thêm `f[j]` vào kết quả. Nhưng cần chú ý $N \le 2 * 10^5, a_i \le 5 * 10^5$ nên nếu ta duyệt từ $1$ đến $\sqrt{a_i}$ thì sẽ không chạy kịp trong thời gian cho phép. Thay vào đó, ta xây dựng sẵn dãy ước của các số từ $1$ đến $5 * 10^5$ bằng cách duyệt $i$ từ $1$ đến $5 * 10^5$ sau đó thêm $i$ vào dãy ước của các bội của $i$.
 
-Độ phức tạp ~O(N * max\{U(a_i)\} + Q)~
+Độ phức tạp $O(N * max\{U(a_i)\} + Q)$
 
 <details>
 <summary>Code tham khảo:</summary>
@@ -90,11 +90,11 @@ int32_t main (){
 
 Ta cải tiến từ Subtask 4 và sử dụng một kỹ thuật tương tự mảng hiệu
 
-Vì lúc này không còn ràng buộc ~l = 1, r = N~ nên mảng ~f~ không còn giống nhau với tất cả học sinh, nhưng nếu ta tính mảng ~f~ lần lươt cho các học sinh từ ~1~ đến ~N~ thì với mỗi truy vấn ~l, r, x, v~, ~f[x]~ được cộng thêm ~v~ với tất cả học sinh từ ~l~ đến ~r~, nên ta chỉ cần cập nhật `f[x] += v` khi xử lý đến học sinh ~l~ và cập nhật `f[x] -= v` khi xử lý đến học sinh ~r + 1~.
+Vì lúc này không còn ràng buộc $l = 1, r = N$ nên mảng $f$ không còn giống nhau với tất cả học sinh, nhưng nếu ta tính mảng $f$ lần lươt cho các học sinh từ $1$ đến $N$ thì với mỗi truy vấn $l, r, x, v$, `f[x]` được cộng thêm $v$ với tất cả học sinh từ $l$ đến $r$, nên ta chỉ cần cập nhật `f[x] += v` khi xử lý đến học sinh $l$ và cập nhật `f[x] -= v` khi xử lý đến học sinh $r + 1$.
 
-Từ ý tưởng trên, đầu tiên với mỗi truy vấn ~l, r, x, v~ ta chia thành hai truy vấn: `f[x] += v` được lưu vào danh sách các truy vấn tại ~l~ và `f[x] -= v` được lưu vào danh sách các truy vấn tại ~r + 1~. Sau đó, ta duyệt ~i~ từ ~1~ đến ~N~ và lấy ra các truy vấn đã được lưu từ trước để cập nhật mảng ~f~, sau đó duyệt các ước của học sinh ~i~ để tìm số kẹo của học sinh ~i~ tương tự như Subtask 4.
+Từ ý tưởng trên, đầu tiên với mỗi truy vấn $l, r, x, v$ ta chia thành hai truy vấn: `f[x] += v` được lưu vào danh sách các truy vấn tại $l$ và `f[x] -= v` được lưu vào danh sách các truy vấn tại $r + 1$. Sau đó, ta duyệt $i$ từ $1$ đến $N$ và lấy ra các truy vấn đã được lưu từ trước để cập nhật mảng $f$, sau đó duyệt các ước của học sinh $i$ để tìm số kẹo của học sinh $i$ tương tự như Subtask 4.
 
-Độ phức tạp: ~O(N * max\{U(a_i)\} + Q)~
+Độ phức tạp: $O(N * max\{U(a_i)\} + Q)$
 
 <details>
 <summary>Code tham khảo:</summary>
